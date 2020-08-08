@@ -30,7 +30,7 @@ function App() {
     }))
   }
 
-  const deleteDoto = (id) => {
+  const deleteTodo = (id) => {
     setTodo(todos.filter(todo => todo.id !== id))
   }
 
@@ -44,6 +44,15 @@ function App() {
     ]))
   }
 
+  const updateTodo = (title, id) => {
+    setTodo(todos.map(todo => {
+      if (todo.id === id) {
+        todo.title = title
+      }
+      return todo
+    }))
+  }
+
   return (
     <div className="App">
       <Modal />
@@ -52,7 +61,7 @@ function App() {
       </React.Suspense>
       {load && <Loader />}
       {todos.length ? (
-        <Todo todos={todos} onToggle={onToggle} deleteDoto={deleteDoto} />)
+        <Todo className="Todo" todos={todos} onToggle={onToggle} deleteTodo={deleteTodo} updateTodo={updateTodo} />)
         : (load ? null
           : <div>No todos</div>
         )}

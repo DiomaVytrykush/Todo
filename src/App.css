@@ -12,8 +12,12 @@
   pointer-events: none;
 }
 
-.completed {
+.completed input {
   text-decoration: line-through;
+}
+
+.Todo {
+  background-color: #3f3160,
 }
 
 @media (prefers-reduced-motion: no-preference) {
