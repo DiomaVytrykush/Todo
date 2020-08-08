@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Todo from './Components/Todos/Todo'
 import Loader from './Components/Loader/Loader'
-import Modal from './Components/Modal/Modal'
 
 const AddTodo = React.lazy(() => import('./Components/AddTodo/AddTodo'))
 
@@ -55,7 +54,6 @@ function App() {
 
   return (
     <div className="App">
-      <Modal />
       <React.Suspense fallback={<Loader />}>
         <AddTodo onAddTodo={onAddTodo} />
       </React.Suspense>
@@ -63,7 +61,7 @@ function App() {
       {todos.length ? (
         <Todo className="Todo" todos={todos} onToggle={onToggle} deleteTodo={deleteTodo} updateTodo={updateTodo} />)
         : (load ? null
-          : <div>No todos</div>
+          : <h1>No todos</h1>
         )}
     </div>
   );
