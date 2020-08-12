@@ -7,7 +7,7 @@ const AddTodo = React.lazy(() => import('./Components/AddTodo/AddTodo'))
 
 function App() {
 
-  const [todos, setTodo] = useState([])
+  let [todos, setTodo] = useState([])
   const [load, setLoad] = useState(true)
 
   useEffect(() => {
@@ -31,6 +31,10 @@ function App() {
 
   const deleteTodo = (id) => {
     setTodo(todos.filter(todo => todo.id !== id))
+  }
+
+  const deleteAllTodos = () => {
+    setTodo(todos = [])
   }
 
   const onAddTodo = (title) => {
@@ -59,7 +63,7 @@ function App() {
       </React.Suspense>
       {load && <Loader />}
       {todos.length ? (
-        <Todo className="Todo" todos={todos} onToggle={onToggle} deleteTodo={deleteTodo} updateTodo={updateTodo} />)
+        <Todo className="Todo" todos={todos} onToggle={onToggle} deleteTodo={deleteTodo} deleteAllTodos={deleteAllTodos} updateTodo={updateTodo} />)
         : (load ? null
           : <h1>No todos</h1>
         )}

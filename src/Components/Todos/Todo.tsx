@@ -1,44 +1,6 @@
 import React from 'react'
 import FlipMove from 'react-flip-move'
-
-const styles = {
-    ul: {
-        backgroundColor: '#3f3160',
-        listStyle: 'none',
-        minHeight: '400px',
-        width: '400px',
-        padding: '30px',
-        margin: '20px',
-        borderRadius: '5px',
-    },
-    li: {
-        backgroundColor: 'rgb(27, 112, 137)',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '10px',
-        borderRadius: '5px',
-        marginBottom: '10px',
-    },
-    checkiInput: {
-        marginRight: '10px',
-        cursor: 'pointer'
-    },
-    textInput: {
-        backgroundColor: 'rgb(27, 112, 137)',
-        border: 0,
-        color: '#fff',
-        fontSize: '18px',
-        outline: 'none'
-    },
-    button: {
-        backgroundColor: 'rgb(235, 156, 5)',
-        border: 'none',
-        color: 'white',
-        outline: 'none',
-        cursor: 'pointer'
-    }
-}
+import './Todo.css'
 
 type TodoType = {
     id: number,
@@ -50,16 +12,17 @@ type PropsType = {
     todos: Array<TodoType>,
     onToggle: (id: number) => void,
     deleteTodo: (id: number) => void,
-    updateTodo: (value: string, id: number) => void
+    updateTodo: (target: any, id: number) => void,
+    deleteAllTodos: () => void
 }
 
 const Todo = (props: PropsType) => {
 
     return (
-        <div style={styles.ul}>
+        <div className="todoWrapper">
             <FlipMove duration={500} easing="ease-in-out">
                 {
-                    props.todos.map((todo, index) => { 
+                    props.todos.map((todo, index) => {
 
                         const classes: Array<any> = []
 
@@ -67,26 +30,27 @@ const Todo = (props: PropsType) => {
                             classes.push('completed')
                         }
                         return (
-                            <div key={todo.id} style={styles.li}>
+                            <div key={todo.id} className="todoItems" >
 
-                                <span className={classes.join('  ')}>
-                                    <input checked={todo.completed} style={styles.checkiInput} type="checkbox" onChange={() => props.onToggle(todo.id)} />
+                                <span style={{ display: 'flex', alignItems: 'center', width: '95%' }} className={classes.join('  ')}>
+                                    <input checked={todo.completed} type="checkbox" onChange={() => props.onToggle(todo.id)} />
                                     <strong>{index + 1}</strong>
                                 &nbsp;
                                 <input
+                                        className="textInput"
                                         type="text"
                                         onChange={(e) => props.updateTodo(e.target.value, todo.id)}
                                         key={todo.id}
                                         value={todo.title}
-                                        style={styles.textInput}
                                     />
                                 </span>
-                                <button onClick={() => props.deleteTodo(todo.id)} style={styles.button}>&times;</button>
+                                <button className="deleteTodo" onClick={() => props.deleteTodo(todo.id)} >&times;</button>
                             </div>
                         )
                     }
                     )
                 }
+                <button className="addTodoButton" style={{ margin: '20px 0' }} onClick={() => props.deleteAllTodos()}>Delete all</button>
             </FlipMove>
         </div>
     )

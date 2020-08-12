@@ -1,0 +1,36 @@
+.addTodo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.addTodoButton {
+    margin: 0 10px;
+    background-color: rgb(235, 156, 5);
+    border-radius: 5px;
+    border: none;
+    height: 34px;
+    outline: none;
+    width: 100px;
+    cursor: pointer;
+    padding: 10px;
+    color: white;
+    font-family: 'Righteous', cursive;
+}
+
+.addTodoText {
+    font-family: 'Righteous', cursive;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    outline: none;
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .addTodoButton {
+        width: 80px;
+        margin: 0 5px;
+    }
+  }
