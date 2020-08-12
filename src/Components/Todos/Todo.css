@@ -1,0 +1,53 @@
+.todoWrapper{
+    font-family: 'Righteous', cursive;
+    background-color: #3f3160;
+    min-height: 400px;
+    width: 70%;
+    padding: 30px;
+    margin: 20px;
+    border-radius: 5px;
+}
+.todoItems{
+    background-color: rgb(27, 112, 137);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.checkiInput{
+    margin-right: 10px;
+    cursor: pointer;
+}
+.textInput{    
+    font-family: 'Righteous', cursive;
+    background-color: rgb(27, 112, 137);
+    border: 0;
+    color: #fff;
+    font-size: 18px;
+    outline: none;
+    width: -webkit-fill-available;
+
+}
+.deleteTodo{
+    background-color: rgb(235, 156, 5);
+    border: none;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+
+@media screen and (max-width: 600px) {
+    .todoItems {
+    padding: 5px;
+    }
+    .textInput {
+      font-size: 14px;
+    }
+    .todoWrapper{
+        min-height: 300px;
+    }
+}
