@@ -22,7 +22,7 @@ const AddTodo = ({ onAddTodo }: PropsType) => {
         <form className="addTodo" onSubmit={handleSubmit}>
             <input className="addTodoText" value={value} onChange={(event) => setValue(event.target.value)} />
             <button className="addTodoButton" type="submit">Add</button>
-        </form>
+        </form >
     )
 }
 
