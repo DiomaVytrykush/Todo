@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FlipMove from 'react-flip-move'
 import './Todo.css'
 
@@ -18,6 +18,8 @@ type PropsType = {
 
 const Todo = (props: PropsType) => {
 
+    const [isOpen, setOpen] = useState(false)
+
     return (
         <div className="todoWrapper">
             <FlipMove duration={500} easing="ease-in-out">
@@ -33,7 +35,14 @@ const Todo = (props: PropsType) => {
                             <div key={todo.id} className="todoItems" >
 
                                 <span style={{ display: 'flex', alignItems: 'center', width: '95%' }} className={classes.join('  ')}>
-                                    <input checked={todo.completed} type="checkbox" onChange={() => props.onToggle(todo.id)} />
+                                    <label className="container">
+                                        <input
+                                            checked={todo.completed}
+                                            style={{ outline: "none", cursor: "pointer", border: "50%" }}
+                                            type="checkbox"
+                                            onChange={() => props.onToggle(todo.id)} />
+                                        <span className="checkmark"></span>
+                                    </label>
                                     <strong>{index + 1}</strong>
                                 &nbsp;
                                 <input
@@ -44,11 +53,26 @@ const Todo = (props: PropsType) => {
                                         value={todo.title}
                                     />
                                 </span>
-                                <button className="deleteTodo" onClick={() => props.deleteTodo(todo.id)} >&times;</button>
+                                {
+                                    isOpen && <div className="modal">
+                                        <div className="modal__body">
+                                            <h1>Are you sure you want to delete todo`{index + 1}`?</h1>
+                                            <button className="modal__button"
+                                                style={{ margin: '15px 0' }}
+                                                onClick={() => {
+                                                    props.deleteTodo(todo.id);
+                                                    setOpen(false)
+                                                }}>Yes</button>
+                                            <button className="modal__button"
+                                                onClick={() => setOpen(false)}
+                                                style={{ margin: '15px 10px' }}>No</button>
+                                        </div>
+                                    </div>
+                                }
+                                <button className="deleteTodo" onClick={() => { setOpen(true) }}>&times;</button>
                             </div>
                         )
-                    }
-                    )
+                    })
                 }
                 <button className="addTodoButton" style={{ margin: '20px 0' }} onClick={() => props.deleteAllTodos()}>Delete all</button>
             </FlipMove>
