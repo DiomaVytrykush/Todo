@@ -1,0 +1,2 @@
+.addTodo{display:flex;justify-content:center;align-items:center;width:50%}.addTodoButton,.modal__button{margin:0 10px;background-color:#eb9c05;height:40px;width:100px;cursor:pointer;padding:10px;color:#fff}.addTodoButton,.addTodoText,.modal__button{border-radius:5px;border:none;outline:none;font-family:"Righteous",cursive}.addTodoText{height:30px;width:100%;padding:5px 15px}@media screen and (max-width:600px){.addTodoButton{width:80px;margin:0 5px}.addTodo{width:70%}}
+/*# sourceMappingURL=3.b277acaa.chunk.css.map */
